@@ -15,7 +15,7 @@ body {
 canvas {
   width: 500px;
   height: 500px;
-  background-color: #000;
+  background-color: rgb(119, 158, 104);
 }
 
 button {
@@ -31,5 +31,13 @@ button {
 .menu {
   display: flex;
   flex-direction: row;
-  margin: 20px;
+  margin: 10px;
+}
+
+#difficulty {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }

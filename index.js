@@ -3,25 +3,27 @@ const canvas = document.getElementById("canvas")
 canvas.width = 500
 canvas.height = 500
 
+const context = canvas.getContext("2d")
+
 let score = 0
 
 let x = 10
 
 let y = 10
 
+let difficulty = 100
+
 let fruitPosition = {}
 
 let positionHead = { x, y }
 
-let position = [positionHead, { x: 10, y: 9 }]
+let position = [positionHead, { x: 10, y: 0 }]
 
 let movement = "ArrowDown"
 
 let pause = true
 
-const context = canvas.getContext("2d")
-
-context.fillStyle = "#fff"
+context.fillStyle = "rgb(3,3,3,0.6)"
 
 document.addEventListener("keydown", (e) => {
   checkKey(e.key)
@@ -152,7 +154,7 @@ function Game() {
 
   checkGameOver()
 
-  if (!pause) setTimeout(Game, 100)
+  if (!pause) setTimeout(Game, difficulty)
 }
 
 function ResetGame() {
@@ -166,16 +168,16 @@ function ResetGame() {
 
   positionHead = { x, y }
 
-  position = [positionHead, { x: 10, y: 9 }]
+  position = [positionHead, { x: 10, y: 0 }]
 
   movement = "ArrowDown"
-
-  pause = true
 
   generateFruit()
 }
 
 generateFruit()
+
+updateCanvas()
 
 document.getElementById("StartButton").addEventListener("click", () => {
   if (pause) {
@@ -190,4 +192,18 @@ document.getElementById("PauseButton").addEventListener("click", () => {
 
 document.getElementById("ResetButton").addEventListener("click", () => {
   ResetGame()
+  updateCanvas()
+})
+
+document.getElementById("Hard").addEventListener("change", (e) => {
+  difficulty = e.target.value
+  e.target.blur()
+})
+document.getElementById("Normal").addEventListener("change", (e) => {
+  difficulty = e.target.value
+  e.target.blur()
+})
+document.getElementById("Easy").addEventListener("change", (e) => {
+  difficulty = e.target.value
+  e.target.blur()
 })
