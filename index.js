@@ -5,6 +5,8 @@ canvas.height = 500
 
 const context = canvas.getContext("2d")
 
+let keyPress 
+
 let score = 0
 
 let x = 10
@@ -26,7 +28,7 @@ let pause = true
 context.fillStyle = "rgb(3,3,3,0.6)"
 
 document.addEventListener("keydown", (e) => {
-  checkKey(e.key)
+    keyPress = e.key
 })
 
 function checkKey(key) {
@@ -144,6 +146,9 @@ function checkGameOver() {
 }
 
 function Game() {
+
+  checkKey(keyPress)
+
   updateBodyPosition()
 
   upDatePosition(movement)
